@@ -1,0 +1,15 @@
+# Hugo site parameters: modules
+#
+# When splitting a section into its own configuration file, the file itself
+# represents the top-level configuration object. Therefore no "module:" here.
+#
+# Resources / further reading:
+# - Hugo configuration reference (built-in variables and defaults):
+#   https://gohugo.io/getting-started/configuration/#all-configuration-settings
+# - https://gohugo.io/hugo-modules/configuration/
+
+---
+
+hugoVersion:
+  extended: true # whether the extended version of Hugo is required.
+  min: "0.148" # minimum Hugo version supported

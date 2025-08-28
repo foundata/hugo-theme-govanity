@@ -4,7 +4,7 @@
   default: ["go-module" "hugo-module"]
 */}}
 {{ $p := default (slice "go-module" "hugo-module") ($.Param "handleTags") }}
-{{ $pages := where .Site.RegularPages.ByTitle "Params.tags" "intersect" $p }}
+{{ $pages := where .Site.RegularPages "Params.tags" "intersect" $p }}
 {{ $paginator := .Paginate $pages }}
 
 <table class="packagelist">
@@ -14,7 +14,7 @@
     </tr>
   </thead>
   <tbody>
-    {{ range $paginator.Pages -}}
+    {{ range $paginator.Pages.ByTitle -}}
       {{ $page := . }}
       {{/* prefer front matter import_path, else fallback based on page URL */}}
       {{ $importPath := or $page.Params.import_path (partial "function/getImportPath.html" $page.Permalink) }}

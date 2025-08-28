@@ -1,8 +1,10 @@
 ---
 title: "{{ replace .File.ContentBaseName "-" " " | strings.ToLower }}"
 draft: false
+# include this page if it matches params.handleTags (default: ["go-module"])
+# (default: ["go-module", "hugo-module"])
 tags:
-  - "package" # mandatory to be included in the package listing
+  - "go-module"
   - "hugo-module"
 
 # Vanity import path root
@@ -18,7 +20,7 @@ repo:
   # The Go import path repository root (so: no protocol:// prefix, no .git/hg/...
   # suffix). See https://pkg.go.dev/cmd/go#hdr-Remote_import_paths for details.
   root: "github.com/FIXME-FIXME-FIXME/{{ replace .File.ContentBaseName "-" " " | strings.ToLower }}"
-  subdir: "" # optional: e.g. "src/package02" for nested modules
+  #subdir: "" # optional: e.g. "src/package02" for nested modules
 
 # 2) OR a module proxy (preferred if you run your own proxy, emits something like
 #    <meta name="go-import" content="example.org mod https://proxy.example.org">)

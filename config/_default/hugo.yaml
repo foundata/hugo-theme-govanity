@@ -1,0 +1,35 @@
+
+### Hugo configuration
+
+# This file contains the most basic configuration values. Up until Hugo v0.110.0
+# it was known as config.yaml.
+#
+# Further reading / info:
+#
+# - Official Hugo documentation on how to configure your Hugo site,
+#   full list of Hugo-defined variables with their default value:
+#   https://gohugo.io/getting-started/configuration/#all-configuration-settings
+
+---
+
+# Single-purpose theme; exact request URIs are critical.
+# Disable features that could alter URLs or produce needless pages:
+# - Unsupported page kinds
+# - Multilingual/i18n (interferes with Go vanity import path matching)
+disableKinds:
+  - "rss"
+  - "section"
+  - "taxonomy"
+  - "term"
+defaultContentLanguage: "en"
+defaultContentLanguageInSubdir: false
+pagination:
+  pagerSize: 15 # Hugo's default is 10.
+  path: "page"
+
+params:
+  # Only pages that define at least one of the following tags in their Front
+  # Matter will be included in Go vanity import path handling.
+  handleTags:
+    - "go-module"
+    - "hugo-module"
