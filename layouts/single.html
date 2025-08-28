@@ -33,9 +33,12 @@
       <li>Website: <a href="{{ . }}">{{ . }}</a></li>
     {{ end }}
   </ul>
+  <p>
+    [ <a href="{{ `/` | relLangURL }}">Back to overview</a> ]
+  </p>
+</div>
 
+<div class="package-content">
   {{ .Content }}
-
-  <p>[ <a href="{{ `/` | relLangURL }}">Back to overview</a> ]</p>
 </div>
 {{ end }}
