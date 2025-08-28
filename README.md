@@ -99,6 +99,8 @@ baseURL: "https://go.example.com/"
 
 > ℹ️ **Heads-up:** Exact host + path matters to the Go toolchain. Use HTTPS and avoid extra path segments in `baseURL`. Do not forget the trailing slash.
 
+> ⚠ Easy adaption of the optics is not implemented yet (see [Issues](https://github.com/foundata/hugo-theme-govanity/issues)). Coming releases will provide sane defaults and config options in this regard, stay tuned.
+
 
 ## Usage<a id="usage"></a>
 
