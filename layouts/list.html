@@ -1,0 +1,33 @@
+{{ define "main" }}
+{{ $p := slice "package" }}
+{{ $pages := where .Site.RegularPages.ByTitle "Params.tags" "intersect" $p }}
+{{ $paginator := .Paginate $pages }}
+
+<table class="packagelist">
+  <thead>
+    <tr>
+      <th>Go package overview</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{ range $paginator.Pages -}}
+      {{ $page := . }}
+      {{/* prefer front matter import_path, else fallback partial */}}
+      {{ $importPath := or $page.Params.import_path (partial "function/getImportPath.html" $page.Permalink) }}
+      {{ with $importPath }}
+      <tr>
+        <td>
+          <tt>
+            <a href="{{ $page.Permalink }}">{{ . }}</a>
+          </tt>
+        </td>
+      </tr>
+      {{ end }}
+    {{- end }}
+  </tbody>
+</table>
+
+<nav class="pagination">
+  {{ template "_internal/pagination.html" . }}
+</nav>
+{{ end }}

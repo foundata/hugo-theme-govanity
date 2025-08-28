@@ -1,0 +1,57 @@
+{{/*
+  Emit go-import / go-source meta tags for vanity imports.
+
+  Notes:
+  - Mod proxy variant: https://go.dev/ref/mod#glos-module-proxy
+  - From https://pkg.go.dev/cmd/go#hdr-Remote_import_paths
+    > The meta tag should appear as early in the file as possible. In particular,
+    > it should appear before any raw JavaScript or CSS, to avoid confusing the
+    > go command’s restricted parser.
+*/}}
+
+{{ $pg := . }} {{/* page context */}}
+{{ $importPath := or $pg.Params.import_path (partial "function/getImportPath.html" $pg.Permalink) }}
+
+{{/* Normalize front matter (Hugo params are lowercased) */}}
+{{ $repo      := $pg.Params.repo }}
+{{ $repoRoot  := cond $repo (index $repo "root") "" }}
+{{ $repoVCS   := cond $repo (default "git" (index $repo "vcs")) "git" }}
+{{ $repoSub   := cond $repo (default "" (index $repo "subdir")) "" }}
+
+{{ $modProxy  := $pg.Params.mod_proxy }}
+{{ $proxyURL  := cond $modProxy (index $modProxy "url") "" }}
+
+{{ $source    := $pg.Params.source }}
+{{ $srcDir    := cond $source (index $source "dir") "" }}
+{{ $srcFile   := cond $source (index $source "file") "" }}
+{{ $srcLine   := cond $source (index $source "line") "" }}
+
+{{/* Build go-import */}}
+{{ if $importPath }}
+  {{ if $proxyURL }}
+    {{/* Modules-aware proxy form: <import> mod <proxyURL> */}}
+    <meta name="go-import" content="{{ $importPath }} mod {{ $proxyURL }}">
+  {{ else if $repoRoot }}
+    {{/* VCS form (optionally with subdir for Go >= 1.25) */}}
+    {{ if $repoSub }}
+      <meta name="go-import" content="{{ $importPath }} {{ $repoVCS }} https://{{ $repoRoot }} {{ $repoSub }}">
+    {{ else }}
+      <meta name="go-import" content="{{ $importPath }} {{ $repoVCS }} https://{{ $repoRoot }}">
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* Build go-source:
+     Prefer explicit templates from front matter; otherwise derive common GitHub-style paths from repoRoot. */}}
+{{ if $importPath }}
+  {{ if and $srcDir $srcFile $srcLine }}
+    <meta name="go-source" content="{{ $importPath }} {{ $srcDir }} {{ $srcFile }} {{ $srcLine }}">
+  {{ else if $repoRoot }}
+    <meta name="go-source" content="{{ $importPath }} https://{{ $repoRoot }} https://{{ $repoRoot }}/tree/main{/dir} https://{{ $repoRoot }}/blob/main{/dir}/{file}#L{line}">
+  {{ end }}
+{{ end }}
+
+{{/* Optional: meta refresh redirect (e.g., to repo). Set .Site.Params.redirect = true */}}
+{{ if and .Site.Params.redirect $repoRoot }}
+  <meta http-equiv="refresh" content="0; url=https://{{ $repoRoot }}">
+{{ end }}

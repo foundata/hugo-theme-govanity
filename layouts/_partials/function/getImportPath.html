@@ -1,0 +1,29 @@
+{{/*
+  Helper to parse the a Go/Hugo module import path (without protocol
+  information) as string from a full URI.
+
+  Usage examples:
+
+    {{ $importPath := partial "function/getimportPath.html" .Permalink }}
+
+    # Output: golang.foundata.com/hugo-theme-dev
+    {{ $importPath := partial "function/getimportPath.html"
+                              "https://golang.foundata.com/hugo-theme-dev/" }}
+
+    [...]
+*/}}
+{{ $url := urls.Parse . }}
+
+{{ $host := $url.Hostname }}
+{{ $port := $url.Port }}
+{{ $scheme := $url.Scheme }}
+
+{{ $hostWithPort := $host }}
+{{ if and $port (not (or (and (eq $scheme "http") (eq $port "80")) (and (eq $scheme "https") (eq $port "443")))) }}
+  {{ $hostWithPort = printf "%s:%s" $host $port }}
+{{ end }}
+
+{{ $importPath := printf "%s%s" $hostWithPort $url.RequestURI }}
+{{ $importPath = strings.TrimRight "/" $importPath }}
+
+{{ return $importPath }}

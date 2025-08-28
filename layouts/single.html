@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="package-details">
+  {{ $page := .Page }}
+  {{ $importPath := or $page.Params.import_path (partial "function/getImportPath.html" $page.Permalink) }}
+  {{ with $importPath }}
+    <h2>{{ . }}</h2>
+    <code>go get {{ . }}</code>
+    <code>import "{{ . }}"</code>
+  {{ end }}
+
+  {{ with $page.Params.repo.root }}
+  <p>
+    Source: <a href="https://{{ . }}">https://{{ . }}</a>
+  </p>
+  {{ end }}
+
+  <p>[ <a href="{{ `/` | relLangURL }}">Back to overview</a> ]</p>
+</div>
+{{ end }}
