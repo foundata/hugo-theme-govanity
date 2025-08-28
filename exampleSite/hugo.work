@@ -1,0 +1,19 @@
+// Hugo workspace file for local development.
+//
+// In workspace mode, local modules override versions, so you don't need any
+// 'replace' lines in your site's go.mod or Hugo module config for development.
+// You can use the environment variable HUGO_MODULE_WORKSPACE to point to this
+// file: HUGO_MODULE_WORKSPACE=hugo.work hugo server --ignoreVendorPaths "**"
+//
+// Further information:
+// https://gohugo.io/hugo-modules/use-modules/#module-workspaces
+
+go 1.24.0
+
+// use(...) lists local module directories (no aliases or replace strings).
+// Go reads each listed dir's go.mod to get its 'module <path>'. When that
+// module <path> is imported, Go uses the local dir from the workspace instead
+// of the real <path>.
+use (
+    .. // this project itself
+)
