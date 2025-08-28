@@ -11,6 +11,17 @@ Further reading, references:
 * [`go` docs: Remote import paths](https://pkg.go.dev/cmd/go#hdr-Remote_import_paths)
 
 
+## Table of contents
+
+- [Installation](#installation)
+  - [Using Hugo modules](#installation-hugo-modules)
+  - [Using Git submodules](#installation-git-submodules)
+- [Usage and configuration](#usage)
+- [Licensing, copyright](#licensing-copyright)
+- [Author information](#author-information)
+
+
+
 ## Installation<a id="installation"></a>
 
 ### Using Hugo modules<a id="installation-hugo-modules"></a>
@@ -39,6 +50,13 @@ Now reference the theme directory name in your [`theme:` configuration](https://
 theme:
   - "govanity"
 ```
+
+
+## Usage and configuration<a id="usage"></a>
+
+FIXME
+
+
 
 
 ## Licensing, copyright<a id="licensing-copyright"></a>
