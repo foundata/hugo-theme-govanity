@@ -26,7 +26,7 @@ repo:
 #   url: "https://proxy.example.org"
 
 # go-source (for deep links to dirs/files/lines in your source browser)
-# Provide the three templates here. If ommitted: derive common GitHub-style paths
+# Provide the three templates here. If omitted: derive common GitHub-style paths
 # from repoRoot.
 # source:
 #   dir:  "https://github.com/foobar-blubber/package02/tree{/dir}"
@@ -35,7 +35,8 @@ repo:
 
 # optional
 # urls:
-#   docs: "https://example.com/url-to-your-own-docs/"
+#   doc: "https://example.com/url-to-your-own-docs/"
 #   website: "https://example.org/url-to-your-mega-tool-website/"
-#   redirect: "https://example.org/url-to-your-mega-tool-website/" # only humans
+#   source: "https://example.org/url-to-your-mega-tool-website/" # Defaults to https://<repo root>. Set a custom URL here, or set to false (without quotes) to hide the link.
+#   redirect: "https://example.org/url-to-your-mega-tool-website/" # redirects only humans / browsers
 ---

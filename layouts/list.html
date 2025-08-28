@@ -1,18 +1,22 @@
 {{ define "main" }}
-{{ $p := slice "package" }}
+{{/*
+  Include pages if at least one tag matches params.handleTags or
+  default: ["go-module" "hugo-module"]
+*/}}
+{{ $p := default (slice "go-module" "hugo-module") ($.Param "handleTags") }}
 {{ $pages := where .Site.RegularPages.ByTitle "Params.tags" "intersect" $p }}
 {{ $paginator := .Paginate $pages }}
 
 <table class="packagelist">
   <thead>
     <tr>
-      <th>Go package overview</th>
+      <th>Go module overview</th>
     </tr>
   </thead>
   <tbody>
     {{ range $paginator.Pages -}}
       {{ $page := . }}
-      {{/* prefer front matter import_path, else fallback partial */}}
+      {{/* prefer front matter import_path, else fallback based on page URL */}}
       {{ $importPath := or $page.Params.import_path (partial "function/getImportPath.html" $page.Permalink) }}
       {{ with $importPath }}
       <tr>
@@ -26,6 +30,8 @@
     {{- end }}
   </tbody>
 </table>
+
+{{ .Content }}
 
 <nav class="pagination">
   {{ template "_internal/pagination.html" . }}

@@ -51,7 +51,8 @@
   {{ end }}
 {{ end }}
 
-{{/* Optional: meta refresh redirect (e.g., to repo). Set .Site.Params.redirect = true */}}
-{{ if and .Site.Params.redirect $repoRoot }}
-  <meta http-equiv="refresh" content="0; url=https://{{ $repoRoot }}">
+{{/* Optional: meta refresh (human-facing). Uses front matter: urls.redirect */}}
+{{ $urls := .Page.Params.urls }}
+{{ with $urls.redirect }}
+  <meta http-equiv="refresh" content="0; url={{ . }}">
 {{ end }}
