@@ -1,6 +1,6 @@
 # Hugo theme: govanity (vanity URLs for Go modules / packages with Hugo)
 
-The **`govanity` Hugo theme** simplifies building and maintaining a vanity base domain such as `go.example.com` or `example.dev` and serving the required `go-import` meta tags for [vanity import paths](https://pkg.go.dev/cmd/go#hdr-Remote_import_paths).
+The **`govanity` Hugo theme** simplifies building and maintaining a vanity base domain such as `go.example.com` or `example.dev` and serving the required `<meta>` tags for [vanity import paths](https://pkg.go.dev/cmd/go#hdr-Remote_import_paths).
 
 The generated static site can be deployed on any static-capable host. The landing page lists all modules; each module is a content file with fitting front matter. See [`archetypes/default.md`](archetypes/default.md) for a ready-to-use template.
 
@@ -37,7 +37,7 @@ Vanity import paths decouple the import path from the code host. For example, th
 import "golang.foundata.com/hugo-theme-dev"
 ```
 
-Under the hood, the site serves `go-import` meta tags that redirect tooling to the real repository (e.g. GitHub).
+Under the hood, the site serves `<meta name="go-import" ...>` that redirect tooling to the real repository (e.g. GitHub).
 
 **Further reading, references:**
 
@@ -48,7 +48,7 @@ Under the hood, the site serves `go-import` meta tags that redirect tooling to t
 
 ### Demo<a id="demo"></a>
 
-Clone the repository and run the included example content (requires Hugo, Go, and Git):
+Clone the repository and run the included [example content](./exampleSite/content/) (requires Hugo, Go, and Git):
 
 ```bash
 git clone https://github.com/foundata/hugo-theme-govanity.git
