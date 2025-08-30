@@ -18,3 +18,10 @@ path = "**"
 precedence = "closest"
 SPDX-FileCopyrightText = "foundata GmbH (https://foundata.com)"
 SPDX-License-Identifier = "GPL-3.0-or-later"
+
+[[annotations]]
+path = "static/favicon.ico"
+precedence = "closest"
+SPDX-FileCopyrightText = "Renee French"
+SPDX-License-Identifier = "CC-BY-4.0"
+SPDX-FileComment = "Optimized version of https://go.dev/favicon.ico; See note about the Go Gopher mascot at https://go.dev/brand."
