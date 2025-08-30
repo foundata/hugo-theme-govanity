@@ -46,7 +46,7 @@ Under the hood, the site serves `<meta name="go-import" ...>` that redirect tool
 * [`go` docs: Remote import paths](https://pkg.go.dev/cmd/go#hdr-Remote_import_paths)
 
 
-### Demo<a id="demo"></a>
+## Demo<a id="demo"></a>
 
 Clone the repository and run the included [example content](./exampleSite/content/) (requires Hugo, Go, and Git):
 
