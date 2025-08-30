@@ -16,6 +16,8 @@ The generated static site can be deployed on any static-capable host. The landin
 - [Usage](#usage)
   - [Creating new entries](#usage-add-entries)
   - [Deployment](#deployment)
+- [Compatibility](#compatibility)
+- [Contributing](#contributing)
 - [Troubleshooting](#troubleshooting)
 - [Licensing, copyright](#licensing-copyright)
 - [Author information](#author-information)
@@ -149,6 +151,23 @@ This is a static site: deploy anywhere you can host static files (e.g. your smal
 - **`no go-import meta tags`**: Verify the request path and that the HTML contains the correct `<meta name="go-import" ...>` tag. Try visiting the page with `?go-get=1`.
 - **Module not listed on the overview**: Check the page `tags` and `params.handleTags`.
 - **Imports still point to the old host**: Clear module cache (`go clean -modcache`) and ensure DNS/HTTPS and exact paths are correct.
+
+
+## Compatibility<a id="compatibility"></a>
+
+This project is compatible with Hugo (extended) ≥ v0.148.0 and should always work with the latest Hugo release (we usually run the latest Hugo ourselves and fix issues promptly). It has been tested at least with:
+
+- [Hugo extended v0.149.0](https://github.com/gohugoio/hugo/releases/tag/v0.149.0)
+- [Hugo extended v0.148.0](https://github.com/gohugoio/hugo/releases/tag/v0.148.0)
+
+If your version isn't listed, it might still work. Just give it a try.
+
+
+## Contributing<a id="contributing"></a>
+
+See [`CONTRIBUTING.md`](./CONTRIBUTING.md) if you want to get involved.
+
+This projects's functionality is mature, so there might be little activity on the repository in the future. Don't get fooled by this, the project is under active maintenance and used daily by the maintainers.
 
 
 ## Licensing, copyright<a id="licensing-copyright"></a>

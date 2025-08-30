@@ -12,4 +12,4 @@
 
 hugoVersion:
   extended: true # whether the extended version of Hugo is required.
-  min: "0.148" # minimum Hugo version supported
+  min: "0.148.0" # minimum Hugo version supported
