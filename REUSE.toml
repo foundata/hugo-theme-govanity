@@ -25,3 +25,14 @@ precedence = "closest"
 SPDX-FileCopyrightText = "Renee French"
 SPDX-License-Identifier = "CC-BY-4.0"
 SPDX-FileComment = "Optimized version of https://go.dev/favicon.ico; See note about the Go Gopher mascot at https://go.dev/brand."
+
+[[annotations]]
+path = "assets/styles/modern-normalize.css"
+precedence = "closest"
+SPDX-FileCopyrightText = """
+Copyright (c) Sindre Sorhus <sindresorhus@gmail.com> (https://sindresorhus.com)
+Copyright (c) Jonathan Neal
+Copyright (c) Nicolas Gallagher
+"""
+SPDX-License-Identifier = "MIT"
+SPDX-FileComment = "https://github.com/sindresorhus/modern-normalize. Tailwind Preflight is based on it (see https://tailwindcss.com/docs/preflight)"

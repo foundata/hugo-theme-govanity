@@ -33,3 +33,10 @@ params:
   handleTags:
     - "go-module"
     - "hugo-module"
+
+  # Algorithm used for https://gohugo.io/hugo-pipes/fingerprint/. This is
+  # influencing file name length of generated assets (might be relevant for
+  # some services, e.g. some Cloudflare services will not deploy the site
+  # if URLs are longer than 100 chars); Attention: "md5" is supported by
+  # Hugo but modern browsers might not allow it anymore.
+  fingerprintAlgorithm: "sha256"

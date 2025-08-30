@@ -16,6 +16,24 @@
   <meta name="robots" content="noindex,nofollow">
   {{ end }}
 
+  {{/* Hugo scratch to store files and content for bundling CSS and JS assets */}}
+  {{ $assets := newScratch }}
+
+  {{/* Basic styling */}}
+  {{ $assets.Add "css" (slice (resources.Get "styles/modern-normalize.css")) }}
+
+  {{/* get the scratch's CSS content as bundled, optimized file */}}
+  {{ if $assets.Get "css" }}
+    {{ $bundleCSS := $assets.Get "css" | resources.Concat "styles/bundle.css" | resources.Minify | resources.Fingerprint (.Site.Params.theme.fingerprintAlgorithm | default "sha256") }}
+    <link type="text/css" rel="stylesheet" href="{{ $bundleCSS.RelPermalink }}" integrity="{{ $bundleCSS.Data.Integrity }}">
+  {{ end }}
+
+  {{/* get the scratch's JS content as bundled, optimized file */}}
+  {{ if $assets.Get "js" }}
+    {{ $bundleJS := $assets.Get "js" | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint (.Site.Params.theme.fingerprintAlgorithm | default "sha256") }}
+    <script defer id="script-bundle" src="{{ $bundleJS.RelPermalink }}" integrity="{{ $bundleJS.Data.Integrity }}"{{ if (.Site.Params.Feature.codeCopy | default true) }} data-copy="{{- (partial `function/plainify.html` (i18n `code.copy`)) -}}" data-copied="{{- (partial `function/plainify.html` (i18n `code.copied`)) -}}"{{ end }}></script> {{/* attributes used for js/code.js: data-copy, data-copied */}}
+  {{ end }}
+
   <style>
     /* FIXME this is just an quick hack, real styling has to be done */
     html {
