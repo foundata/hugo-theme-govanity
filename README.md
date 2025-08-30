@@ -52,7 +52,7 @@ Clone the repository and run the included example content (requires Hugo, Go, an
 
 ```bash
 git clone https://github.com/foundata/hugo-theme-govanity.git
-cd hugo-theme-govanity
+cd ./hugo-theme-govanity/exampleSite
 HUGO_MODULE_WORKSPACE=hugo.work hugo server --ignoreVendorPaths "**"
 ```
 

@@ -29,7 +29,7 @@ This file provides information for maintainers and contributors to `hugo-theme-g
    hugo version
 
    # Test with the local version
-   cd ./hugo-theme-govanity
+   cd ./hugo-theme-govanity/exampleSite
    HUGO_MODULE_WORKSPACE=hugo.work hugo server --ignoreVendorPaths "**"
 
    # Print a module dependency graph
@@ -41,7 +41,11 @@ This file provides information for maintainers and contributors to `hugo-theme-g
 
 Nothing special or automated yet. Therefore just some hints for manual testing:
 
-- Run the theme and watch for any Hugo warnings or errors.
+- Run the `exampleSite` and watch for any Hugo warnings or errors:
+  ```bash
+  cd ./hugo-theme-govanity/exampleSite
+  HUGO_MODULE_WORKSPACE=hugo.work hugo server --ignoreVendorPaths "**"
+  ```
 - Try different content types and features. Enable `params.feature.debug: true` and verify that the context values (e.g., `layout`) appear as expected.
 
 
