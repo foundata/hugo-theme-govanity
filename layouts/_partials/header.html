@@ -5,14 +5,29 @@
   <nav id="nav-main">
     <ul>
       <li class="logo">
+        {{/* Determine the header title: use theme.header.title if set, otherwise fallback to .Site.Title */}}
+        {{ $headerTitle := .Site.Title }}
+        {{ with .Site.Params.theme.header.title }}
+          {{ if ne . "" }}
+            {{/* markdownify is deprecated but page.RenderString does not work in *every* context (eg. not available in 404.html) */}}
+            {{ $headerTitle = (. | markdownify | emojify | htmlUnescape | plainify) }}
+          {{ end }}
+        {{ end }}
         <a href="{{ `/` | relLangURL }}" class="contrast">
-          {{ if .Site.Params.theme.logo }}
-            <img src="{{ .Site.Params.theme.logo }}" alt="{{ .Site.Title }}">
-          {{ else }}
-            <span>
-              {{/* markdownify is deprecated but page.RenderString does not work in *every* context (eg. not available in 404.html) */}}
-              {{ .Site.Title | markdownify | emojify | htmlUnescape | plainify }}
-            </span>
+          {{ if .Site.Params.theme.header.logo.src }}
+            {{ $imagePath := .Site.Params.theme.header.logo.src }}
+            {{ $image := resources.GetMatch $imagePath }}
+            {{ $imageSrc := "" }}
+            {{ if $image }}
+              {{ $imageSrc = $image.RelPermalink }}
+              <img src="{{ $imageSrc }}"
+                  alt="{{ if not .Site.Params.theme.header.showTitle }}{{ $headerTitle }}{{ end }}"
+                  {{ with .Site.Params.theme.header.logo.width }} width="{{ . }}"{{ end }}
+                  {{ with .Site.Params.theme.header.logo.height }} height="{{ . }}"{{ end }}>
+            {{ end }}
+          {{ end }}
+          {{ if .Site.Params.theme.header.showTitle }}
+            <span>{{ $headerTitle }}</span>
           {{ end }}
         </a>
       </li>

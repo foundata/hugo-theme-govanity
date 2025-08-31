@@ -28,21 +28,36 @@ pagination:
   path: "page"
 
 params:
-  # The main logo. Relative path to file within the /assets directory.
-  # The logo should be an SVG or at least provide twice the resolution
-  # initially needed for the default header to support any media
-  # dimensions in a good way.
-  #logo: "images/logo.svg"
+  theme:
+    header:
+      # The main logo. Relative path to file within the /assets directory.
+      # The logo should be an SVG or at least provide twice the resolution
+      # initially needed for the default header to support any media
+      # dimensions in a good way.
+      # The height and width parameters are optional, but they can be used to
+      # adjust the dimensions of the image. They are applied as attributes of
+      # the <img> HTML tag.
+      logo:
+       src: "images/logo-go-gopher-network.svg"
+       width: "40"
+       height: "35"
 
-  # Only pages that define at least one of the following tags in their Front
-  # Matter will be included in Go vanity import path handling.
-  handleTags:
-    - "go-module"
-    - "hugo-module"
+      # Whether to display a text title in the header.
+      # If enabled, the title will appear next to the logo (if one is set).
+      showTitle: true
+      # The text to use as the header title (applies only if showTitle is true).
+      # If left empty, the global .Site.Title will be used as a fallback.
+      title: ""
 
-  # Algorithm used for https://gohugo.io/hugo-pipes/fingerprint/. This is
-  # influencing file name length of generated assets (might be relevant for
-  # some services, e.g. some Cloudflare services will not deploy the site
-  # if URLs are longer than 100 chars); Attention: "md5" is supported by
-  # Hugo but modern browsers might not allow it anymore.
-  fingerprintAlgorithm: "sha256"
+    # Only pages that define at least one of the following tags in their Front
+    # Matter will be included in Go vanity import handling / overview.
+    vanityPageTags:
+      - "go-module"
+      - "hugo-module"
+
+    # Algorithm used for https://gohugo.io/hugo-pipes/fingerprint/. This is
+    # influencing file name length of generated assets (might be relevant for
+    # some services, e.g. some Cloudflare services will not deploy the site
+    # if URLs are longer than 100 chars); Attention: "md5" is supported by
+    # Hugo but modern browsers might not allow it anymore.
+    fingerprintAlgorithm: "sha256"

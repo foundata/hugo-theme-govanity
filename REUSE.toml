@@ -34,7 +34,7 @@ SPDX-License-Identifier = "MIT"
 SPDX-FileComment = "https://picocss.com/; Downloaded on 2025-08-31 from https://raw.githubusercontent.com/picocss/pico/refs/heads/main/css/pico.min.css"
 
 [[annotations]]
-path = "static/images/logo-go-gopher-network.svg"
+path = "assets/images/logo-go-gopher-network.svg"
 precedence = "closest"
 SPDX-FileCopyrightText = "Copyright (c) Egon Elbre, https://egonelbre.com/"
 SPDX-License-Identifier = "CC0-1.0"
