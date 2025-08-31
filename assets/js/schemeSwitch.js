@@ -6,9 +6,11 @@
 (() => {
 	const STORAGE_KEY = "hugoGoVanityPreferredColorScheme";
 	const ROOT_ATTR = "data-theme";
+	const BUNDLE_ID = "script-bundle";
 	const TOGGLE_ID = "colorSchemeSwitcher";
 
 	const html = document.documentElement;
+	const scriptBundle = document.getElementById(BUNDLE_ID);
 	const switchScheme = document.getElementById(TOGGLE_ID);
 	if (!switchScheme) return;
 
@@ -28,9 +30,10 @@
 	};
 
 	const updateButtonA11y = (currentTheme) => {
-		// FIXME use i18 strings from outside this script
+		const textTurnOnLightMode = scriptBundle ? scriptBundle.getAttribute("x-text-turnonlightmode") : "Turn on light mode";
+		const textTurnOnDarkMode = scriptBundle ? scriptBundle.getAttribute("x-text-turnondarkmode") : "Turn on dark mode";
 		const nextLabel =
-			currentTheme === "dark" ? "Turn on light mode" : "Turn on dark mode";
+			currentTheme === "dark" ? textTurnOnLightMode : textTurnOnDarkMode;
 		switchScheme.setAttribute("aria-label", nextLabel);
 		switchScheme.setAttribute("title", nextLabel);
 		switchScheme.setAttribute(

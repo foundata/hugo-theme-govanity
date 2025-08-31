@@ -37,7 +37,10 @@
   {{/* Get the scratch's JS content as bundled, optimized file */}}
   {{ if $assets.Get "js" }}
     {{ $bundleJS := $assets.Get "js" | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint (.Site.Params.theme.fingerprintAlgorithm | default "sha256") }}
-    <script defer id="script-bundle" src="{{ $bundleJS.RelPermalink }}" integrity="{{ $bundleJS.Data.Integrity }}"></script>
+    <script defer id="script-bundle" src="{{ $bundleJS.RelPermalink }}" integrity="{{ $bundleJS.Data.Integrity }}"
+            {{/* attributes used for js/schemeSwitch.js: x-turnonlightmode, x-turnondarkmode */}}
+            x-text-turnonlightmode="{{- (partial `function/plainify.html` (i18n `header.colorSchemeSwitcherTurnOnLightMode`)) -}}"
+            x-text-turnondarkmode="{{- (partial `function/plainify.html` (i18n `header.colorSchemeSwitcherTurnOnDarkMode`)) -}}"></script>
   {{ end }}
 </head>
 <body>
