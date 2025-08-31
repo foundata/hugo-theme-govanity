@@ -1,39 +1,58 @@
 {{ define "main" }}
-{{/*
-  Include pages if at least one tag matches params.handleTags or
-  default: ["go-module" "hugo-module"]
-*/}}
-{{ $p := default (slice "go-module" "hugo-module") ($.Param "handleTags") }}
-{{ $pages := where .Site.RegularPages "Params.tags" "intersect" $p }}
-{{ $paginator := .Paginate $pages }}
+{{ if not hugo.IsProduction }}{{ "<!-- list.html: start -->" | safeHTML }}{{ end }}
 
-<table class="packagelist">
-  <thead>
-    <tr>
-      <th>Go module overview</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{ range $paginator.Pages.ByTitle -}}
-      {{ $page := . }}
-      {{/* prefer front matter import_path, else fallback based on page URL */}}
-      {{ $importPath := or $page.Params.import_path (partial "function/getImportPath.html" $page.Permalink) }}
-      {{ with $importPath }}
-      <tr>
-        <td>
-          <tt>
-            <a href="{{ $page.Permalink }}">{{ . }}</a>
-          </tt>
-        </td>
-      </tr>
-      {{ end }}
-    {{- end }}
-  </tbody>
-</table>
+<section id="overview">
+  <p>
+    Browse all Go modules-import paths and links in one place.
+  </p>
 
-{{ .Content }}
+  <div class="overflow-auto">
+    <table class="striped">
 
-<nav class="pagination">
-  {{ template "_internal/pagination.html" . }}
-</nav>
+      <thead>
+        <th>Overview</th>
+      </thead>
+
+      <tbody>
+        {{/*
+          Include pages if at least one tag matches params.handleTags or
+          default: ["go-module" "hugo-module"]
+        */}}
+        {{ $p := default (slice "go-module" "hugo-module") ($.Param "handleTags") }}
+        {{ $pages := where .Site.RegularPages "Params.tags" "intersect" $p }}
+        {{ $paginator := .Paginate $pages }}
+
+        {{ range $paginator.Pages.ByTitle -}}
+          {{ $page := . }}
+          {{/* prefer front matter import_path, else fallback based on page URL */}}
+          {{ $importPath := or $page.Params.import_path (partial "function/getImportPath.html" $page.Permalink) }}
+          {{ with $importPath }}
+          <tr>
+            <td>
+              <tt>
+                <a href="{{ $page.Permalink }}">{{ . }}</a>
+              </tt>
+            </td>
+          </tr>
+          {{ end }}
+        {{ end }}
+      </tbody>
+
+    </table>
+  </div>
+</section>
+
+{{ with .Content }}
+<section>
+  {{ . }}
+</section>
+{{ end }}
+
+<section>
+  <nav class="pagination">
+    {{ template "_internal/pagination.html" . }}
+  </nav>
+</section>
+
+{{ if not hugo.IsProduction }}{{ "<!-- list.html: end -->" | safeHTML }}{{ end }}
 {{ end }}

@@ -28,6 +28,12 @@ pagination:
   path: "page"
 
 params:
+  # The main logo. Relative path to file within the /assets directory.
+  # The logo should be an SVG or at least provide twice the resolution
+  # initially needed for the default header to support any media
+  # dimensions in a good way.
+  #logo: "images/logo.svg"
+
   # Only pages that define at least one of the following tags in their Front
   # Matter will be included in Go vanity import path handling.
   handleTags:

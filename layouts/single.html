@@ -1,44 +1,119 @@
 {{ define "main" }}
-<div class="package-details">
-  {{ $page := .Page }}
-  {{ $importPath := or $page.Params.import_path (partial "function/getImportPath.html" $page.Permalink) }}
+{{ if not hugo.IsProduction }}{{ "<!-- single.html: start -->" | safeHTML }}{{ end }}
+
+{{ $page := .Page }}
+{{ $importPath := or $page.Params.import_path (partial "function/getImportPath.html" $page.Permalink) }}
+
+<div id="detail-view">
+
+  <section>
+    <h1>{{ .Title }}</h1>
+    <p>
+      {{ with .Params.description }}
+        {{ . }}
+      {{ else }}
+        This page documents the Go import for <code>{{ .Title }}</code>.
+      {{ end }}
+    </p>
+  </section>
+
 
   {{ with $importPath }}
-    <h2>{{ . }}</h2>
-    <code>go get "{{ . }}"</code>
-    <code>import "{{ . }}"</code>
+    <section>
+      <h3>Install</h3>
+      <p>
+        Add the dependency to your module with <code>go get</code>:
+      </p>
+
+      <code class="language-bash">
+        go get "{{ . }}"
+      </code>
+    </section>
+
+    <section>
+      <h3>Upgrade</h3>
+      <p>
+        Update the dependency with <code>go get</code>:
+      </p>
+
+      <code class="language-bash">
+        go get -u "{{ . }}"
+      </code>
+    </section>
   {{ end }}
 
-  {{ $urls := $page.Params.urls }}
-  {{ $repoRoot := $page.Params.repo.root }}
-  {{ $fallbackSource := cond $repoRoot (printf "https://%s" $repoRoot) "" }}
 
-  {{/* Read urls.source (supports nested key lookups and site fallback) */}}
-  {{ $sourceParam := $page.Param "urls.source" }}
+  <section>
+    <h3>
+      Resources
+    </h3>
 
-  {{/* If urls.source is present:
-        - a string => use it
-        - false (boolean) => keep it false to suppress link
-        If urls.source is absent => fall back to https://<repo root> (when available). */}}
-  {{ $sourceURL := default $fallbackSource $sourceParam }}
+    {{ $urls := $page.Params.urls }}
+    {{ $repoRoot := $page.Params.repo.root }}
+    {{ $fallbackSource := cond $repoRoot (printf "https://%s" $repoRoot) "" }}
 
-  <ul class="package-links">
-    {{ with $sourceURL }}
-      <li>Source: <a href="{{ . }}">{{ . }}</a></li>
-    {{ end }}
-    {{ with $urls.doc }}
-      <li>Docs: <a href="{{ . }}">{{ . }}</a></li>
-    {{ end }}
-    {{ with $urls.website }}
-      <li>Website: <a href="{{ . }}">{{ . }}</a></li>
-    {{ end }}
-  </ul>
-  <p>
-    [ <a href="{{ `/` | relLangURL }}">Back to overview</a> ]
-  </p>
+    {{/* Read urls.source (supports nested key lookups and site fallback) */}}
+    {{ $sourceParam := $page.Param "urls.source" }}
+
+    {{/* If urls.source is present:
+          - a string => use it
+          - false (boolean) => keep it false to suppress link
+          If urls.source is absent => fall back to https://<repo root> (when available). */}}
+    {{ $sourceURL := default $fallbackSource $sourceParam }}
+
+    <table class="striped">
+      <thead>
+        <tr>
+          <th scope="col">
+            Type
+          </th>
+          <th scope="col">
+            Link
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+      {{ with $urls.doc }}
+        <tr>
+          <td>
+            Docs
+          </td>
+          <td>
+            <a href="{{ . }}">{{ . }}</a>
+          </td>
+        </tr>
+      {{ end }}
+      {{ with $urls.website }}
+        <tr>
+          <td>
+            Website
+          </td>
+          <td>
+            <a href="{{ . }}">{{ . }}</a>
+          </td>
+        </tr>
+      {{ end }}
+      {{ with $sourceURL }}
+        <tr>
+          <td>
+            Source
+          </td>
+          <td>
+            <a href="{{ . }}">{{ . }}</a>
+          </td>
+        </tr>
+      {{ end }}
+      </tbody>
+    </table>
+  </section>
+
+  {{ with .Content }}
+  <section>
+    {{ . }}
+  </section>
+  {{ end }}
+
 </div>
 
-<div class="package-content">
-  {{ .Content }}
-</div>
+{{ if not hugo.IsProduction }}{{ "<!-- single.html: end -->" | safeHTML }}{{ end }}
 {{ end }}

@@ -1,6 +1,125 @@
 {{ if not hugo.IsProduction }}{{ "<!-- _partials/header.html: start -->" | safeHTML }}{{ end }}
 
-<header>
+<header class="container">
+
+  <nav id="nav-main">
+    <ul>
+      <li class="logo">
+        <a href="{{ `/` | relLangURL }}" class="contrast">
+          {{ if .Site.Params.theme.logo }}
+            <img src="{{ .Site.Params.theme.logo }}" alt="{{ .Site.Title }}">
+          {{ else }}
+            <span>
+              {{/* markdownify is deprecated but page.RenderString does not work in *every* context (eg. not available in 404.html) */}}
+              {{ .Site.Title | markdownify | emojify | htmlUnescape | plainify }}
+            </span>
+          {{ end }}
+        </a>
+      </li>
+    </ul>
+    <ul>
+      <li>
+          <a id="colorSchemeSwitcher" class="contrast" aria-label="Switch color theme" href="#">
+          <span class="sr-only">colorSchemeSwitcher</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32" fill="currentColor"><clipPath id="theme-toggle-cutout"><path d="M0-11h25a1 1 0 0017 13v30H0Z"></path></clipPath><g clip-path="url(#theme-toggle-cutout)"><circle cx="16" cy="16" r="8.4"></circle><path d="M18.3 3.2c0 1.3-1 2.3-2.3 2.3s-2.3-1-2.3-2.3S14.7.9 16 .9s2.3 1 2.3 2.3zm-4.6 25.6c0-1.3 1-2.3 2.3-2.3s2.3 1 2.3 2.3-1 2.3-2.3 2.3-2.3-1-2.3-2.3zm15.1-10.5c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zM3.2 13.7c1.3 0 2.3 1 2.3 2.3s-1 2.3-2.3 2.3S.9 17.3.9 16s1-2.3 2.3-2.3zm5.8-7C9 7.9 7.9 9 6.7 9S4.4 8 4.4 6.7s1-2.3 2.3-2.3S9 5.4 9 6.7zm16.3 21c-1.3 0-2.3-1-2.3-2.3s1-2.3 2.3-2.3 2.3 1 2.3 2.3-1 2.3-2.3 2.3zm2.4-21c0 1.3-1 2.3-2.3 2.3S23 7.9 23 6.7s1-2.3 2.3-2.3 2.4 1 2.4 2.3zM6.7 23C8 23 9 24 9 25.3s-1 2.3-2.3 2.3-2.3-1-2.3-2.3 1-2.3 2.3-2.3z"></path></g></svg>
+        </a>
+      </li>
+    </ul>
+  </nav>
+
+  {{ if not .Page.IsHome }}
+    <nav id="nav-breadcrumb" aria-label="breadcrumb">
+      <ul>
+        <li><a href="{{ `/` | relLangURL }}">Overview</a></li>
+        <li><a href="#" aria-current="page">Details</a></li>
+      </ul>
+    </nav>
+  {{ end }}
+
+  <script>
+  /*
+  * Minimal single-button theme toggle
+  * - Defaults to OS preference (auto) until user clicks
+  * - Persists explicit choice in localStorage
+  */
+  (() => {
+    const STORAGE_KEY = "hugoGoVanityPreferredColorScheme";
+    const ROOT_ATTR = "data-theme";
+    const TOGGLE_ID = "colorSchemeSwitcher";
+
+    const html = document.documentElement;
+    const switchTheme = document.getElementById(TOGGLE_ID);
+    if (!switchTheme) return;
+
+    const mql = window.matchMedia("(prefers-color-scheme: dark)");
+    const preferred = () => (mql.matches ? "dark" : "light");
+
+    const getStored = () => {
+      const v = window.localStorage?.getItem(STORAGE_KEY);
+      // Treat "auto" or anything else as not stored
+      return v === "dark" || v === "light" ? v : null;
+    };
+
+    const setStored = (theme) => {
+      try { window.localStorage?.setItem(STORAGE_KEY, theme); } catch (_) {}
+    };
+
+    const updateButtonA11y = (currentTheme) => {
+      const nextLabel = currentTheme === "dark"
+        ? "Turn on light mode"
+        : "Turn on dark mode";
+      switchTheme.setAttribute("aria-label", nextLabel);
+      switchTheme.setAttribute("title", nextLabel);
+      switchTheme.setAttribute("aria-pressed", currentTheme === "dark" ? "true" : "false");
+      // Optional hook for styling the icon based on current theme
+      switchTheme.dataset.theme = currentTheme;
+    };
+
+    const applyTheme = (theme, persist) => {
+      html.setAttribute(ROOT_ATTR, theme);
+      if (persist) setStored(theme);
+      updateButtonA11y(theme);
+    };
+
+    // Initialize
+    const stored = getStored();
+    if (stored) {
+      applyTheme(stored, false);
+    } else {
+      // Follow OS until user picks
+      applyTheme(preferred(), false);
+      mql.addEventListener?.("change", () => {
+        if (!getStored()) applyTheme(preferred(), false);
+      });
+    }
+
+    // Toggle on click (light <-> dark). Prevent default anchor navigation.
+    switchTheme.addEventListener("click", (ev) => {
+      ev.preventDefault();
+      const current = html.getAttribute(ROOT_ATTR) || preferred();
+      const next = current === "dark" ? "light" : "dark";
+      applyTheme(next, true); // persist explicit choice
+    });
+
+    // Optional: keyboard Space activation for accessibility on <a>
+    switchTheme.addEventListener("keydown", (ev) => {
+      if (ev.code === "Space" || ev.key === " ") {
+        ev.preventDefault();
+        switchTheme.click();
+      }
+    });
+
+    // Expose a tiny API in case you ever want to reset to "auto":
+    window.picoTheme = {
+      get current() { return html.getAttribute(ROOT_ATTR); },
+      resetToAuto() {
+        try { window.localStorage?.removeItem(STORAGE_KEY); } catch (_) {}
+        applyTheme(preferred(), false);
+      }
+    };
+  })();
+  </script>
+
 </header>
 
 {{ if not hugo.IsProduction }}{{ "<!-- _partials/header.html: end -->" | safeHTML }}{{ end }}
