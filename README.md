@@ -13,6 +13,16 @@ The generated static site can be deployed on any static-capable host. The landin
   - [Using Hugo modules](#installation-hugo-modules)
   - [Using Git submodules](#installation-git-submodules)
 - [Configuration](#configuration)
+  - [Settings](#settings)
+    - [`vanityPageTags`](#setting-vanityPageTags)
+    - [`header.logo`](#setting-header-logo)
+    - [`header.showTitle`](#setting-header-showTitle)
+    - [`header.title`](#setting-header-title)
+    - [`footer.additionalText`](#setting-footer-additionalText)
+    - [`footer.additionalTextTrailingBreak`](#setting-footer-additionalTextTrailingBreak)
+    - [`footer.showThemeInfo`](#setting-footer-showThemeInfo)
+    - [`footer.showTrademarksInfo`](#setting-footer-showTrademarksInfo)
+    - [`footer.showGoGopherInfo`](#setting-footer-showGoGopherInfo)
 - [Usage](#usage)
   - [Creating new entries](#usage-add-entries)
   - [Deployment](#deployment)
@@ -101,7 +111,167 @@ baseURL: "https://go.example.com/"
 
 > ℹ️ **Heads-up:** Exact host + path matters to the Go toolchain. Use HTTPS and avoid extra path segments in `baseURL`. Do not forget the trailing slash.
 
-> ⚠ Easy adaption of the optics is not implemented yet (see [Issues](https://github.com/foundata/hugo-theme-govanity/issues)). Coming releases will provide sane defaults and config options in this regard, stay tuned.
+> ⚠ Easy adaption colors is not implemented yet (see [Issue #6](https://github.com/foundata/hugo-theme-govanity/issues/6)). Coming releases will provide this, stay tuned.
+
+
+### Settings<a id="settings"></a>
+
+All settings have to be set below `params.theme`.
+
+
+#### `vanityPageTags`<a id="setting-vanityPageTags"></a>
+
+- Type: List of strings.
+- Default: `["go-module"]`
+- Purpose:
+  - Only content pages that define **at least one of these tags** in their Front Matter **are treated as vanity module pages** (included in the overview and get the `go-import` / `go-source` meta tags emitted early).
+  - Put the tags in each module page's Front Matter under `tags:`.
+- **Example (config):**
+  ```yaml
+  params:
+    theme:
+      vanityPageTags:
+        - "go-module"
+        - "hugo-module"
+  ```
+- **Example (page Front Matter):**
+  ```yaml
+  ---
+  title: "hugo-theme-dev"
+  tags:
+    - "go-module"
+    - "hugo-module"
+  repo:
+    root: "github.com/foundata/hugo-theme-dev"
+  ---
+  ```
+
+
+#### `header.logo`<a id="setting-header-logo"></a>
+
+- Type: Object with `src`, optional `width`, optional `height`.
+- Default: Not set.
+- Purpose:
+  -  Show a logo in the header.
+  - `src` is a **relative path under `/assets`** (e.g., `images/logo.svg`).
+  -  `width` and `height` become `<img>` attributes (strings), letting you control layout.
+- **Example (config):**
+  ```yaml
+  params:
+    theme:
+      header:
+        logo:
+          # This image is shipped with the theme
+          src: "images/logo-go-gopher-network.svg"
+          width: "40"
+          height: "35"
+  ```
+
+
+#### `header.showTitle`<a id="setting-header-showTitle"></a>
+
+- Type: Boolean.
+- Default: `true`
+- Purpose:
+  - Toggle a text title in the header (rendered next to the logo if a logo is set).
+  - If enabled, the theme displays either `header.title` or falls back to `.Site.Title`.
+- **Example (config):**
+  ```yaml
+  params:
+    theme:
+      header:
+        showTitle: true
+  ```
+
+
+#### `header.title`<a id="setting-header-title"></a>
+
+- Type: String.
+- Default: Not set.
+- Purpose:
+  - Used only if `header.showTitle` is `true`. If empty or unset, the theme uses `.Site.Title`.
+  - Explicit header title as kind of text logo
+- **Example (config):**
+  ```yaml
+  params:
+    theme:
+      header:
+        showTitle: true
+        title: "Go import path overview"
+  ```
+
+
+#### `footer.additionalText`<a id="setting-footer-additionalText"></a>
+
+- Type: String.
+- Default: `""`
+- Purpose:
+  - Optional extra text in the footer. Markdown is allowed (but raw HTML will be filtered).
+  - If empty, no extra text is rendered.
+- **Example (config):**
+  ```yaml
+  params:
+    theme:
+      footer:
+        additionalText: "© 2025 AMCE Inc. | [Contact Us](https://exmaple.com/contact)"
+  ```
+
+#### `footer.additionalTextTrailingBreak`<a id="setting-footer-additionalTextTrailingBreak"></a>
+
+- Type: Boolean.
+- Default: `true`
+- Purpose:
+  - Add a line break after `additionalText`.
+  - Useful if the line gets too long when combining `additionalText` with attribution toggles below.
+- **Example (config):**
+  ```yaml
+  params:
+    theme:
+      footer:
+        additionalText: "© 2025 AMCE Inc. | [Contact Us](https://exmaple.com/contact)"
+        additionalTextTrailingBreak: true # will add a <br> after the additional text
+  ```
+
+
+#### `footer.showThemeInfo`<a id="setting-footer-showThemeInfo"></a>
+
+- Type: Boolean.
+- Default: `true`
+- Purpose: Show a short theme attribution link in the footer.
+- **Example (config):**
+  ```yaml
+  params:
+    theme:
+      footer:
+        showThemeInfo: true
+  ```
+
+#### `footer.showTrademarksInfo`<a id="setting-footer-showTrademarksInfo"></a>
+
+- Type: Boolean.
+- Default: `true`
+- Purpose: Show a link to Google's [Go Brand and Trademark Usage Guidelines](https://go.dev/brand) (recommended).
+- **Example (config):**
+  ```yaml
+  params:
+    theme:
+      footer:
+        showTrademarksInfo: true
+  ```
+
+#### `footer.showGoGopherInfo`<a id="setting-footer-showGoGopherInfo"></a>
+
+- Type: Boolean.
+- Default: `true`
+- Purpose: Show attribution information about the  [Go Gopher](https://go.dev/blog/gopher) (recommended).
+- **Example (config):**
+  ```yaml
+  ```yaml
+  params:
+    theme:
+      footer:
+        showGoGopherInfo: true
+  ```
 
 
 ## Usage<a id="usage"></a>
