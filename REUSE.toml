@@ -25,3 +25,10 @@ precedence = "closest"
 SPDX-FileCopyrightText = "Renee French"
 SPDX-License-Identifier = "CC-BY-4.0"
 SPDX-FileComment = "Optimized version of https://go.dev/favicon.ico; See note about the Go Gopher mascot at https://go.dev/brand."
+
+[[annotations]]
+path = "assets/styles/pico.min.css"
+precedence = "closest"
+SPDX-FileCopyrightText = "Copyright (c) 2019-2025 Pico"
+SPDX-License-Identifier = "MIT"
+SPDX-FileComment = "https://picocss.com/; Downloaded from https://raw.githubusercontent.com/picocss/pico/refs/heads/main/css/pico.min.css"

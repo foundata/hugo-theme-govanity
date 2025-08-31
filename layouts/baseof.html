@@ -19,7 +19,10 @@
   {{/* Hugo scratch to store files and content for bundling CSS and JS assets */}}
   {{ $assets := newScratch }}
 
-  {{/* Basic styling */}}
+  {{/* Pico CSS*/}}
+  {{ $assets.Add "css" (slice (resources.Get "styles/pico.min.css")) }}
+
+  {{/* Custom styling */}}
   {{ $assets.Add "css" (slice (resources.Get "styles/style.css")) }}
 
   {{/* get the scratch's CSS content as bundled, optimized file */}}
