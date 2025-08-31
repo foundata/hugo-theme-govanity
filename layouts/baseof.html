@@ -25,6 +25,9 @@
   {{/* Custom styling */}}
   {{ $assets.Add "css" (slice (resources.Get "styles/style.css")) }}
 
+  {{/* Color scheme switch */}}
+  {{ $assets.Add "js" (slice (resources.Get "js/schemeSwitch.js")) }}
+
   {{/* get the scratch's CSS content as bundled, optimized file */}}
   {{ if $assets.Get "css" }}
     {{ $bundleCSS := $assets.Get "css" | resources.Concat "styles/bundle.css" | resources.Minify | resources.Fingerprint (.Site.Params.theme.fingerprintAlgorithm | default "sha256") }}
@@ -34,7 +37,7 @@
   {{/* get the scratch's JS content as bundled, optimized file */}}
   {{ if $assets.Get "js" }}
     {{ $bundleJS := $assets.Get "js" | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint (.Site.Params.theme.fingerprintAlgorithm | default "sha256") }}
-    <script defer id="script-bundle" src="{{ $bundleJS.RelPermalink }}" integrity="{{ $bundleJS.Data.Integrity }}"{{ if (.Site.Params.Feature.codeCopy | default true) }} data-copy="{{- (partial `function/plainify.html` (i18n `code.copy`)) -}}" data-copied="{{- (partial `function/plainify.html` (i18n `code.copied`)) -}}"{{ end }}></script> {{/* attributes used for js/code.js: data-copy, data-copied */}}
+    <script defer id="script-bundle" src="{{ $bundleJS.RelPermalink }}" integrity="{{ $bundleJS.Data.Integrity }}"></script>
   {{ end }}
 </head>
 <body>
@@ -46,6 +49,5 @@
   </main>
 
   {{ partial "footer.html" . }}
-
 </body>
 </html>
