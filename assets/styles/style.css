@@ -1,10 +1,5 @@
-/* FIXME this is just an quick hack, real styling has to be done */
-body {
-    text-align: center;
-    font-size: 1.2rem;
-}
 /* single.html */
-div.package-details {
+/* div.package-details {
     margin: 80px auto 20px auto;
     width: fit-content;
 }
@@ -27,7 +22,7 @@ div.package-content {
 }
 
 /* list.html */
-table.packagelist {
+/* table.packagelist {
     margin: 40px auto;
     border: 1px solid black;
     border-collapse: separate;
@@ -46,10 +41,10 @@ table.packagelist td {
 nav.pagination {
     margin: 40px auto;
     width: fit-content;
-}
+} */
 
 /* style internal Hugo template */
-.pagination {
+/* .pagination {
     display: flex;
     padding-left: 0;
     list-style: none;
@@ -74,4 +69,4 @@ nav.pagination {
 .pagination-sm .page-link {
     padding: 4px 8px;
     line-height: 1.5;
-}
+} */

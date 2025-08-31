@@ -20,7 +20,6 @@
   {{ $assets := newScratch }}
 
   {{/* Basic styling */}}
-  {{ $assets.Add "css" (slice (resources.Get "styles/modern-normalize.css")) }}
   {{ $assets.Add "css" (slice (resources.Get "styles/style.css")) }}
 
   {{/* get the scratch's CSS content as bundled, optimized file */}}
