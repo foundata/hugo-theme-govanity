@@ -7,12 +7,13 @@
 <div id="detail-view">
 
   <section>
-    <h1>{{ .Title }}</h1>
+    <h2>{{ .Title }}</h2>
     <p>
       {{ with .Params.description }}
         {{ . }}
       {{ else }}
-        This page documents the Go import for <code>{{ .Title }}</code>.
+        {{ partial "function/render.html" (i18n "single.defaultDescription"
+                                                (dict "Title" .Title)) }}
       {{ end }}
     </p>
   </section>
@@ -20,33 +21,39 @@
 
   {{ with $importPath }}
     <section>
-      <h3>Install</h3>
+      <h4>
+        {{ partial "function/render.html" (i18n "single.installHeadline") }}
+      </h4>
       <p>
-        Add the dependency to your module with <code>go get</code>:
+        {{ partial "function/render.html" (i18n "single.installDesc") }}
       </p>
 
-      <code class="language-bash">
-        go get "{{ . }}"
-      </code>
+      <span class="language-bash">
+        {{ partial "function/render.html" (i18n "single.installCommand"
+                                                (dict "ImportPath" .)) }}
+      </span>
     </section>
 
     <section>
-      <h3>Upgrade</h3>
+      <h4>
+        {{ partial "function/render.html" (i18n "single.upgradeHeadline") }}
+      </h4>
       <p>
-        Update the dependency with <code>go get</code>:
+        {{ partial "function/render.html" (i18n "single.upgradeDesc") }}
       </p>
 
-      <code class="language-bash">
-        go get -u "{{ . }}"
-      </code>
+      <span class="language-bash">
+        {{ partial "function/render.html" (i18n "single.upgradeCommand"
+                                                (dict "ImportPath" .)) }}
+      </span>
     </section>
   {{ end }}
 
 
   <section>
-    <h3>
-      Resources
-    </h3>
+    <h4>
+      {{ partial "function/render.html" (i18n "single.resourcesHeadline") }}
+    </h4>
 
     {{ $urls := $page.Params.urls }}
     {{ $repoRoot := $page.Params.repo.root }}
@@ -65,10 +72,10 @@
       <thead>
         <tr>
           <th scope="col">
-            Type
+             {{ partial "function/render.html" (i18n "single.resourcesThType") }}
           </th>
           <th scope="col">
-            Link
+             {{ partial "function/render.html" (i18n "single.resourcesThValue") }}
           </th>
         </tr>
       </thead>
@@ -76,7 +83,7 @@
       {{ with $urls.doc }}
         <tr>
           <td>
-            Documentation
+            {{ partial "function/render.html" (i18n "single.resourcesDocumentation") }}
           </td>
           <td>
             <a href="{{ . }}">{{ . }}</a>
@@ -86,7 +93,7 @@
       {{ with $urls.website }}
         <tr>
           <td>
-            Website
+            {{ partial "function/render.html" (i18n "single.resourcesWebsite") }}
           </td>
           <td>
             <a href="{{ . }}">{{ . }}</a>
@@ -96,7 +103,7 @@
       {{ with $sourceURL }}
         <tr>
           <td>
-            Source code
+            {{ partial "function/render.html" (i18n "single.resourcesSourceCode") }}
           </td>
           <td>
             <a href="{{ . }}">{{ . }}</a>

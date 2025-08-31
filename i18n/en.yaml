@@ -1,0 +1,52 @@
+# Language strings and translation: English
+
+---
+
+header:
+  - id: "colorSchemeSwitcherAriaLabel"
+    translation: "Switch color theme"
+  - id: "colorSchemeSwitcherTurnOnLightMode"
+    translation: "Turn on light mode"
+  - id: "colorSchemeSwitcherTurnOnDarkMode"
+    translation: "Turn on dark mode"
+  - id: "navBreadcrumbOverview"
+    translation: "Overview"
+  - id: "navBreadcrumbDetails"
+    translation: "Details"
+
+list:
+  - id: "overviewIntro"
+    translation: "Browse all Go modules-import paths and links in one place."
+  - id: "overviewThOverview"
+    translation: "Overview"
+
+single:
+  - id: "defaultDescription"
+    translation: "This page documents the Go import for `{{ .Title }}`."
+
+  - id: "installHeadline"
+    translation: "Install"
+  - id: "installDesc"
+    translation: "Add the dependency to your module with `go get`:"
+  - id: "installCommand"
+    translation: "`go get \"{{ .ImportPath }}\"`"
+
+  - id: "upgradeHeadline"
+    translation: "Upgrade"
+  - id: "upgradeDesc"
+    translation: "Upgrade the dependency of your module with `go get`:"
+  - id: "upgradeCommand"
+    translation: "`go get -u \"{{ .ImportPath }}\"`"
+
+  - id: "resourcesHeadline"
+    translation: "Other resources"
+  - id: "resourcesThType"
+    translation: "Type / link"
+  - id: "resourcesThValue"
+    translation: "Value"
+  - id: "resourcesDocumentation"
+    translation: "Documentation"
+  - id: "resourcesWebsite"
+    translation: "Website"
+  - id: "resourcesSourceCode"
+    translation: "Source code"

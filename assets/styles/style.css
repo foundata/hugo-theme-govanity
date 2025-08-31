@@ -1,5 +1,5 @@
 /* utility classes */
-.sr-only {
+.sr-only { /* sr = screen reader */
   position: absolute;
   width: 1px;
   height: 1px;
@@ -41,6 +41,8 @@ nav.pagination {
   justify-content: center;
   gap: var(--pico-spacing);
 }
+
+
 /* internal Hugo template */
 .page-link:hover {
   text-decoration: none;

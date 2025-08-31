@@ -1,0 +1,52 @@
+# Language strings and translation: German
+
+---
+
+header:
+  - id: "colorSchemeSwitcherAriaLabel"
+    translation: "Farbschema umschalten"
+  - id: "colorSchemeSwitcherTurnOnLightMode"
+    translation: "Hellen Modus aktivieren"
+  - id: "colorSchemeSwitcherTurnOnDarkMode"
+    translation: "Dunklen Modus aktivieren"
+  - id: "navBreadcrumbOverview"
+    translation: "Übersicht"
+  - id: "navBreadcrumbDetails"
+    translation: "Details"
+
+list:
+  - id: "overviewIntro"
+    translation: "Durchsuchen Sie alle Go-Module-Importpfade und -Links an einem zentralen Ort."
+  - id: "overviewThOverview"
+    translation: "Übersicht"
+
+single:
+  - id: "defaultDescription"
+    translation: "Diese Seite dokumentiert den Go-Import für `{{ .Title }}`."
+
+  - id: "installHeadline"
+    translation: "Installation"
+  - id: "installDesc"
+    translation: "Abhängigkeit mittels `go get` zu einem Modul hinzufügen:"
+  - id: "installCommand"
+    translation: "`go get \"{{ .ImportPath }}\"`"
+
+  - id: "upgradeHeadline"
+    translation: "Aktualisierung (Upgrade)"
+  - id: "upgradeDesc"
+    translation: "Abhängigkeit mittels `go get` aktualisieren:"
+  - id: "upgradeCommand"
+    translation: "`go get -u \"{{ .ImportPath }}\"`"
+
+  - id: "resourcesHeadline"
+    translation: "Weitere Ressourcen"
+  - id: "resourcesThType"
+    translation: "Typ / Link"
+  - id: "resourcesThValue"
+    translation: "Wert"
+  - id: "resourcesDocumentation"
+    translation: "Dokumentation"
+  - id: "resourcesWebsite"
+    translation: "Web-Seite"
+  - id: "resourcesSourceCode"
+    translation: "Quellcode"

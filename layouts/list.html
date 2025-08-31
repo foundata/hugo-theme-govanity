@@ -3,14 +3,18 @@
 
 <section id="overview">
   <p>
-    Browse all Go modules-import paths and links in one place.
+    {{ partial "function/render.html" (i18n "list.overviewIntro") }}
   </p>
 
   <div class="overflow-auto">
     <table class="striped">
 
       <thead>
-        <th>Overview</th>
+        <tr>
+          <th>
+            {{ partial "function/render.html" (i18n "list.overviewThOverview") }}
+          </th>
+        </tr>
       </thead>
 
       <tbody>

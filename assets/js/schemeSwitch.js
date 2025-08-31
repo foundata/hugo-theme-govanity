@@ -28,6 +28,7 @@
 	};
 
 	const updateButtonA11y = (currentTheme) => {
+		// FIXME use i18 strings from outside this script
 		const nextLabel =
 			currentTheme === "dark" ? "Turn on light mode" : "Turn on dark mode";
 		switchScheme.setAttribute("aria-label", nextLabel);
