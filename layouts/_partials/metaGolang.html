@@ -1,3 +1,5 @@
+{{ if not hugo.IsProduction }}{{ "<!-- _partials/metaGolang.html: start -->" | safeHTML }}{{ end }}
+
 {{/*
   Emit go-import / go-source meta tags for vanity imports.
 
@@ -56,3 +58,5 @@
 {{ with $urls.redirect }}
   <meta http-equiv="refresh" content="0; url={{ . }}">
 {{ end }}
+
+{{ if not hugo.IsProduction }}{{ "<!-- _partials/metaGolang.html: end -->" | safeHTML }}{{ end }}
