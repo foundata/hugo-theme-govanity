@@ -114,7 +114,7 @@ baseURL: "https://go.example.com/"
 
 ### Settings<a id="settings"></a>
 
-All settings have to be set below `params.theme`.
+This section documents the theme options you can place under `params.theme` in your Hugo configuration. The example configurations and are safe to copy-paste. All keys are optional and the theme falls back to sensible behavior unless otherwise noted.
 
 > ⚠ Easy adaption of colors is not implemented yet (see [Issue #6](https://github.com/foundata/hugo-theme-govanity/issues/6)). Coming releases will provide this, stay tuned.
 
