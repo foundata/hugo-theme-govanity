@@ -18,7 +18,7 @@
           Include pages if at least one tag matches params.handleTags or
           default: ["go-module" "hugo-module"]
         */}}
-        {{ $p := default (slice "go-module" "hugo-module") ($.Param "handleTags") }}
+        {{ $p := default (slice "go-module" "hugo-module") ($.Param "theme.vanityPageTags") }}
         {{ $pages := where .Site.RegularPages "Params.tags" "intersect" $p }}
         {{ $paginator := .Paginate $pages }}
 
