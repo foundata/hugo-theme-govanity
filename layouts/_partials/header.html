@@ -6,7 +6,7 @@
     <ul>
       <li class="logo">
         {{/* Determine the header title: use theme.header.title if set, otherwise fallback to .Site.Title */}}
-        {{ $headerTitle := .Site.Title }}
+        {{ $headerTitle := (.Site.Title | markdownify | emojify | htmlUnescape | plainify) }}
         {{ with .Site.Params.theme.header.title }}
           {{ if ne . "" }}
             {{/* markdownify is deprecated but page.RenderString does not work in *every* context (eg. not available in 404.html) */}}
@@ -20,14 +20,15 @@
             {{ $imageSrc := "" }}
             {{ if $image }}
               {{ $imageSrc = $image.RelPermalink }}
-              <img src="{{ $imageSrc }}"
-                  alt="{{ if not .Site.Params.theme.header.showTitle }}{{ $headerTitle }}{{ end }}"
-                  {{ with .Site.Params.theme.header.logo.width }} width="{{ . }}"{{ end }}
-                  {{ with .Site.Params.theme.header.logo.height }} height="{{ . }}"{{ end }}>
+              <img id="header-logo"
+                   src="{{ $imageSrc }}"
+                   alt="{{ if not .Site.Params.theme.header.showTitle }}{{ $headerTitle }}{{ end }}"
+                   {{ with .Site.Params.theme.header.logo.width }}width="{{ . }}"{{ end }}
+                   {{ with .Site.Params.theme.header.logo.height }}height="{{ . }}"{{ end }}>
             {{ end }}
           {{ end }}
           {{ if .Site.Params.theme.header.showTitle }}
-            <span>{{ $headerTitle }}</span>
+            <span id="header-title">{{ $headerTitle }}</span>
           {{ end }}
         </a>
       </li>

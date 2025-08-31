@@ -11,6 +11,12 @@
   border-width: 0;
 }
 
+/* baseof.html */
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1000px !important;
+  }
+}
 
 /* _partials/header.html */
 header {
@@ -18,6 +24,9 @@ header {
 }
 header #nav-breadcrumb {
   margin-top: -1.25rem;
+}
+header #header-logo {
+  margin-right: 1rem;
 }
 .logo a {
   font-size: 180%;

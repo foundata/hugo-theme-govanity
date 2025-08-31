@@ -37,17 +37,17 @@ params:
       # The height and width parameters are optional, but they can be used to
       # adjust the dimensions of the image. They are applied as attributes of
       # the <img> HTML tag.
-      logo:
-       src: "images/logo-go-gopher-network.svg"
-       width: "40"
-       height: "35"
+      # logo:
+      #   src: "images/logo-go-gopher-network.svg"
+      #   width: "40"
+      #   height: "35"
 
       # Whether to display a text title in the header.
       # If enabled, the title will appear next to the logo (if one is set).
       showTitle: true
       # The text to use as the header title (applies only if showTitle is true).
       # If left empty, the global .Site.Title will be used as a fallback.
-      title: ""
+      # title: "Go import path overview"
 
     # Only pages that define at least one of the following tags in their Front
     # Matter will be included in Go vanity import handling / overview.
