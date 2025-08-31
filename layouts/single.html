@@ -7,17 +7,25 @@
 <div id="detail-view">
 
   <section>
-    <h2>{{ .Title }}</h2>
+    <h2>
+      {{ .Title }}
+    </h2>
     <p>
-      {{ with .Params.description }}
-        {{ . }}
-      {{ else }}
-        {{ partial "function/render.html" (i18n "single.defaultDescription"
-                                                (dict "Title" .Title)) }}
-      {{ end }}
+      {{ partial "function/render.html" (i18n "single.detailsIntro"
+                                              (dict "Title" .Title)) }}
     </p>
   </section>
 
+  {{ with .Params.description }}
+    <section>
+      <h4>
+          {{ partial "function/render.html" (i18n "single.descriptionHeadline") }}
+      </h2>
+      <p>
+        {{ partial "function/render.html" . }}
+      </p>
+    </section>
+  {{ end }}
 
   {{ with $importPath }}
     <section>

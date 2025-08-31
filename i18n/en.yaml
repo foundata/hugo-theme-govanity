@@ -21,8 +21,11 @@ list:
     translation: "Overview"
 
 single:
-  - id: "defaultDescription"
+  - id: "detailsIntro"
     translation: "This page documents the Go import for `{{ .Title }}`."
+
+  - id: "descriptionHeadline"
+    translation: "Description"
 
   - id: "installHeadline"
     translation: "Install"

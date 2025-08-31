@@ -16,8 +16,11 @@
     {{ partial "function/plainify.html" .Site.Title }}
   </title>
 
+  {{ with .Description }}
+    <meta name="description" content="{{- (partial `function/plainify.html` .) -}}">
+  {{ end }}
   {{ if not hugo.IsProduction }}
-  <meta name="robots" content="noindex,nofollow">
+    <meta name="robots" content="noindex,nofollow">
   {{ end }}
 
   {{/* Hugo scratch to store files and content for bundling CSS and JS assets */}}

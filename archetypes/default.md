@@ -1,5 +1,6 @@
 ---
 title: "{{ replace .File.ContentBaseName "-" " " | strings.ToLower }}"
+#description: "Short description of the Go resource"
 draft: false
 # include this page if it matches params.handleTags (default: ["go-module"])
 # tags:

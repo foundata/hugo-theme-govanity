@@ -7,7 +7,7 @@
   </p>
 
   <div class="overflow-auto">
-    <table class="striped">
+    <table id="overview-table" class="striped">
 
       <thead>
         <tr>
@@ -33,9 +33,15 @@
           {{ with $importPath }}
           <tr>
             <td>
-              <tt>
+              <strong>
                 <a href="{{ $page.Permalink }}">{{ . }}</a>
-              </tt>
+              </strong>
+              {{ with $page.Description }}
+                <br>
+                <small>
+                  {{ partial "function/render.html" . }}
+                </small>
+              {{ end }}
             </td>
           </tr>
           {{ end }}

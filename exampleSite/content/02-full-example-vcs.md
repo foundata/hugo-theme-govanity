@@ -1,5 +1,6 @@
 ---
 title: "02-full-example-vcs"
+description: "Wrapper types for sync/atomic enforcing Whatever Nonsense."
 draft: false
 # include this page in the overview if at least one tag matches params.handleTags
 # (default: ["go-module", "hugo-module"])
