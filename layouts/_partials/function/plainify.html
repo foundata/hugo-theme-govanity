@@ -1,0 +1,6 @@
+{{/*
+  Helper to render a string in consistent way everywhere by respecting markdown
+  as well as emoji, cleaning up HTML tags afterwards while keeping tag
+  contents as good as possible.
+*/}}
+{{ return (. | markdownify | emojify | htmlUnescape | plainify ) }} {{/* markdownify is deprecated but page.RenderString does not work in *every* context (eg. not available in 404.html) */}}
