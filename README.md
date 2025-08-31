@@ -103,10 +103,21 @@ theme:
 
 ## Configuration<a id="configuration"></a>
 
-Set your **vanity base URL** in the Hugo config (this must be the (sub)domain that serves your vanity paths):
+Set your **vanity base URL** in the Hugo config (this must be the (sub)domain that serves your vanity paths) and disable unsupported page kinds:
 
 ```yaml
 baseURL: "https://go.example.com/"
+
+# Single-purpose theme; exact request URIs are critical.
+# Disable features that could alter URLs or produce needless pages:
+# - Unsupported page kinds
+# - Multilingual/i18n (interferes with Go vanity import path matching)
+disableKinds:
+  - "rss"
+  - "section"
+  - "taxonomy"
+  - "term"
+defaultContentLanguageInSubdir: false
 ```
 
 > ℹ️ **Heads-up:** Exact host + path matters to the Go toolchain. Use HTTPS and avoid extra path segments in `baseURL`. Do not forget the trailing slash.
