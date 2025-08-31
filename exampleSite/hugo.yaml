@@ -11,7 +11,9 @@ defaultContentLanguageInSubdir: false
 
 params:
   theme:
-
+    vanityPageTags:
+      - "go-module"
+      - "hugo-module"
     header:
       logo:
         src: "images/logo-go-gopher-network.svg"
