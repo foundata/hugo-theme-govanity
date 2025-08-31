@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Many options to configure the theme's behavior (see README section “Settings”).
 - German translation (#5).
 
-## Changed
+### Changed
 
 - All strings are now handled via Hugo's i18n mechanism. You can easily override them in your local site configuration (#5).
 - A page's `description` in Front Matter is now used for metadata, the overview page, and as a section in the detail view (#4).
