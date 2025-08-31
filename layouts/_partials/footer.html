@@ -1,6 +1,33 @@
 {{ if not hugo.IsProduction }}{{ "<!-- _partials/footer.html: start -->" | safeHTML }}{{ end }}
 
 <footer class="container">
+  <section>
+    {{ $footerParts := slice }}
+
+    {{ if .Site.Params.theme.footer.showThemeInfo }}
+      {{ $footerParts = $footerParts | append `<a href="https://github.com/foundata/hugo-theme-govanity">Hugo govanity</a>` }}
+    {{ end }}
+
+    {{ if .Site.Params.theme.footer.showTrademarksInfo }}
+      {{ $footerParts = $footerParts | append `<a href="https://go.dev/brand">Go trademarks</a>` }}
+    {{ end }}
+
+    {{ if .Site.Params.theme.footer.showGoGopherInfo }}
+      {{ $footerParts = $footerParts | append `<a href="https://go.dev/blog/gopher">Go Gopher by R. French</a>` }}
+    {{ end }}
+
+    {{ with .Site.Params.theme.footer.additionalText }}
+      {{ partial "function/render.html" . }}
+      {{ if $.Site.Params.theme.footer.additionalTextTrailingBreak }}
+        <br>
+      {{ end }}
+    {{ end }}
+
+    {{ if gt (len $footerParts) 0 }}
+      {{ delimit $footerParts " | " | safeHTML }}
+    {{ end }}
+
+  </section>
 </footer>
 
 {{ if not hugo.IsProduction }}{{ "<!-- _partials/footer.html: end -->" | safeHTML }}{{ end }}

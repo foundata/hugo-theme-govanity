@@ -35,6 +35,15 @@ header #header-logo {
 }
 
 
+/* _partials/footer.html */
+footer {
+  text-align: center;
+  --pico-font-size: 60%;
+  font-size: var(--pico-font-size);
+
+}
+
+
 /* list.html */
 nav.pagination {
   display: flex;

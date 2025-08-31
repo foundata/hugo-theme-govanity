@@ -54,6 +54,18 @@ params:
       # If left empty, the global .Site.Title will be used as a fallback.
       # title: "Go import path overview"
 
+    footer:
+      # Optional extra footer text (Markdown allowed). Leave empty to hide.
+      # You can control if a breaking new line should be added in the end
+      additionalText: ""
+      additionalTextTrailingBreak: true
+      # Show theme attribution link.
+      showThemeInfo: true
+      # Show Go trademarks attribution link.
+      showTrademarksInfo: true
+      # Show Go Gopher attribution link.
+      showGoGopherInfo: true
+
 
     # Algorithm used for https://gohugo.io/hugo-pipes/fingerprint/. This is
     # influencing file name length of generated assets (might be relevant for
