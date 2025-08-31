@@ -111,12 +111,12 @@ baseURL: "https://go.example.com/"
 
 > ℹ️ **Heads-up:** Exact host + path matters to the Go toolchain. Use HTTPS and avoid extra path segments in `baseURL`. Do not forget the trailing slash.
 
-> ⚠ Easy adaption colors is not implemented yet (see [Issue #6](https://github.com/foundata/hugo-theme-govanity/issues/6)). Coming releases will provide this, stay tuned.
-
 
 ### Settings<a id="settings"></a>
 
 All settings have to be set below `params.theme`.
+
+> ⚠ Easy adaption of colors is not implemented yet (see [Issue #6](https://github.com/foundata/hugo-theme-govanity/issues/6)). Coming releases will provide this, stay tuned.
 
 
 #### `vanityPageTags`<a id="setting-vanityPageTags"></a>
