@@ -12,6 +12,10 @@
   */}}
   {{ partial "metaGolang.html" . }}
 
+  <title>
+    {{ partial "function/plainify.html" .Site.Title }}
+  </title>
+
   {{ if not hugo.IsProduction }}
   <meta name="robots" content="noindex,nofollow">
   {{ end }}

@@ -16,7 +16,7 @@ header:
 
 list:
   - id: "overviewIntro"
-    translation: "Browse all Go modules-import paths and links in one place."
+    translation: "Explore the Go resources we provide, centralized in one place."
   - id: "overviewThOverview"
     translation: "Overview"
 

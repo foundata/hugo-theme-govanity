@@ -16,7 +16,7 @@ header:
 
 list:
   - id: "overviewIntro"
-    translation: "Durchsuchen Sie alle Go-Module-Importpfade und -Links an einem zentralen Ort."
+    translation: "Erkunden Sie die von uns bereitgestellten Go-Ressourcen, zusammengefasst in einer Übersicht."
   - id: "overviewThOverview"
     translation: "Übersicht"
 
