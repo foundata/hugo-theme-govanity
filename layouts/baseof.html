@@ -19,7 +19,7 @@
   {{/* Hugo scratch to store files and content for bundling CSS and JS assets */}}
   {{ $assets := newScratch }}
 
-  {{/* Pico CSS*/}}
+  {{/* Pico CSS */}}
   {{ $assets.Add "css" (slice (resources.Get "styles/pico.min.css")) }}
 
   {{/* Custom styling */}}
@@ -28,13 +28,13 @@
   {{/* Color scheme switch */}}
   {{ $assets.Add "js" (slice (resources.Get "js/schemeSwitch.js")) }}
 
-  {{/* get the scratch's CSS content as bundled, optimized file */}}
+  {{/* Get the scratch's CSS content as bundled, optimized file */}}
   {{ if $assets.Get "css" }}
     {{ $bundleCSS := $assets.Get "css" | resources.Concat "styles/bundle.css" | resources.Minify | resources.Fingerprint (.Site.Params.theme.fingerprintAlgorithm | default "sha256") }}
     <link type="text/css" rel="stylesheet" href="{{ $bundleCSS.RelPermalink }}" integrity="{{ $bundleCSS.Data.Integrity }}">
   {{ end }}
 
-  {{/* get the scratch's JS content as bundled, optimized file */}}
+  {{/* Get the scratch's JS content as bundled, optimized file */}}
   {{ if $assets.Get "js" }}
     {{ $bundleJS := $assets.Get "js" | resources.Concat "js/bundle.js" | resources.Minify | resources.Fingerprint (.Site.Params.theme.fingerprintAlgorithm | default "sha256") }}
     <script defer id="script-bundle" src="{{ $bundleJS.RelPermalink }}" integrity="{{ $bundleJS.Data.Integrity }}"></script>
