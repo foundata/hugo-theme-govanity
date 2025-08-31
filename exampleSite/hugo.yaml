@@ -6,25 +6,14 @@
 title: "Example site: hugo-theme-govanity"
 theme:
   - "golang.foundata.com/hugo-theme-govanity"
-
-# Single-purpose theme; exact request URIs are critical.
-# Disable features that could alter URLs or produce needless pages:
-# - Unsupported page kinds
-# - Multilingual/i18n (interferes with Go vanity import path matching)
-disableKinds:
-  - "rss"
-  - "section"
-  - "taxonomy"
-  - "term"
 defaultContentLanguage: "en"
 defaultContentLanguageInSubdir: false
-pagination:
-  pagerSize: 15 # Hugo's default is 10.
-  path: "page"
 
 params:
-  # Only pages that define at least one of the following tags in their Front
-  # Matter will be included in Go vanity import path handling.
-  handleTags:
-    - "go-module"
-    - "hugo-module"
+  theme:
+
+    header:
+      logo:
+        src: "images/logo-go-gopher-network.svg"
+        width: "40"
+        height: "35"
