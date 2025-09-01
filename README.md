@@ -277,7 +277,6 @@ This section documents the theme options you can place under `params.theme` in y
 - Purpose: Show attribution information about the  [Go Gopher](https://go.dev/blog/gopher) (recommended).
 - **Example (config):**
   ```yaml
-  ```yaml
   params:
     theme:
       footer:
